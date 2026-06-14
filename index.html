@@ -8,121 +8,69 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #ffffff;
-    --bg2: #f5f5f5;
-    --bg3: #ebebeb;
-    --text: #1a1a1a;
-    --text2: #555;
-    --text3: #888;
-    --border: rgba(0,0,0,0.1);
-    --border2: rgba(0,0,0,0.18);
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-xl: 16px;
+    --bg: #ffffff; --bg2: #f5f5f5; --bg3: #ebebeb;
+    --text: #1a1a1a; --text2: #555; --text3: #888;
+    --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.18);
+    --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1c1c1e;
-      --bg2: #2c2c2e;
-      --bg3: #3a3a3c;
-      --text: #f2f2f7;
-      --text2: #aeaeb2;
-      --text3: #636366;
-      --border: rgba(255,255,255,0.1);
-      --border2: rgba(255,255,255,0.2);
+      --bg: #1c1c1e; --bg2: #2c2c2e; --bg3: #3a3a3c;
+      --text: #f2f2f7; --text2: #aeaeb2; --text3: #636366;
+      --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.2);
     }
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg2);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 2rem;
+    background: var(--bg2); color: var(--text);
+    min-height: 100vh; display: flex; justify-content: center; padding-bottom: 2rem;
   }
-  .app {
-    width: 100%;
-    max-width: 440px;
-    background: var(--bg);
-    min-height: 100vh;
-    position: relative;
-  }
+  .app { width: 100%; max-width: 440px; background: var(--bg); min-height: 100vh; }
   .screen { display: none; }
   .screen.active { display: block; }
 
-  /* Hero */
   .hero {
     background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 60%, #0f3460 100%);
-    padding: 3rem 1.5rem 2.5rem;
-    position: relative;
-    overflow: hidden;
+    padding: 3rem 1.5rem 2.5rem; position: relative; overflow: hidden;
   }
   .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: rgba(255,215,0,0.08);
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px; border-radius: 50%; background: rgba(255,215,0,0.08);
   }
   .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -32px; left: 0; right: 0;
-    height: 64px;
-    background: var(--bg);
-    border-radius: 50% 50% 0 0 / 32px 32px 0 0;
+    content: ''; position: absolute; bottom: -32px; left: 0; right: 0;
+    height: 64px; background: var(--bg); border-radius: 50% 50% 0 0 / 32px 32px 0 0;
   }
   .hero-emoji { font-size: 44px; margin-bottom: 0.75rem; display: block; }
   .hero h1 { font-size: 30px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
   .hero p { font-size: 15px; color: rgba(255,255,255,0.6); margin-top: 4px; }
 
-  /* Content */
   .content { padding: 1.5rem; }
   .section-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text3);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
+    font-size: 11px; font-weight: 600; color: var(--text3);
+    letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem;
   }
 
-  /* City input */
-  .city-input-wrap { position: relative; margin-bottom: 1.25rem; }
-  .city-input-wrap .ti {
+  .input-wrap { position: relative; margin-bottom: 1rem; }
+  .input-wrap .ti {
     position: absolute; left: 14px; top: 50%;
-    transform: translateY(-50%);
-    font-size: 18px; color: var(--text3); pointer-events: none;
+    transform: translateY(-50%); font-size: 18px; color: var(--text3); pointer-events: none;
   }
-  #cityInput {
-    width: 100%;
-    padding: 15px 15px 15px 44px;
-    border-radius: var(--radius-lg);
-    border: 1.5px solid var(--border2);
-    font-size: 16px;
-    background: var(--bg);
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.15s;
+  .input-wrap input {
+    width: 100%; padding: 15px 15px 15px 44px;
+    border-radius: var(--radius-lg); border: 1.5px solid var(--border2);
+    font-size: 16px; background: var(--bg); color: var(--text);
+    outline: none; transition: border-color 0.15s; font-family: inherit;
   }
-  #cityInput:focus { border-color: #185fa5; }
-  #cityInput::placeholder { color: var(--text3); }
+  .input-wrap input:focus { border-color: #185fa5; }
+  .input-wrap input::placeholder { color: var(--text3); }
 
-  /* Trip type */
   .trip-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
   .trip-btn {
-    padding: 14px 8px 12px;
-    border-radius: var(--radius-md);
-    border: 1.5px solid var(--border);
-    background: var(--bg);
-    cursor: pointer;
-    text-align: center;
-    font-size: 13px;
-    color: var(--text2);
-    transition: all 0.15s;
-    font-family: inherit;
+    padding: 14px 8px 12px; border-radius: var(--radius-md);
+    border: 1.5px solid var(--border); background: var(--bg);
+    cursor: pointer; text-align: center; font-size: 13px;
+    color: var(--text2); transition: all 0.15s; font-family: inherit;
   }
   .trip-btn i { display: block; font-size: 24px; margin-bottom: 5px; color: var(--text3); }
   .trip-btn.selected { border-color: #185fa5; background: #e6f1fb; color: #0c447c; }
@@ -132,96 +80,66 @@
     .trip-btn.selected i { color: #85b7eb; }
   }
 
-  /* CTA button */
   .cta-btn {
     width: 100%; padding: 16px;
     background: linear-gradient(135deg, #0f3460, #185fa5);
-    color: #fff; border: none;
-    border-radius: var(--radius-lg);
-    font-size: 16px; font-weight: 600;
-    cursor: pointer;
+    color: #fff; border: none; border-radius: var(--radius-lg);
+    font-size: 16px; font-weight: 600; cursor: pointer;
     display: flex; align-items: center; justify-content: center; gap: 8px;
-    font-family: inherit;
-    transition: opacity 0.15s;
+    font-family: inherit; transition: opacity 0.15s;
   }
   .cta-btn:disabled { opacity: 0.35; cursor: not-allowed; }
   .cta-btn i { font-size: 18px; }
 
-  /* City banner */
+  /* Banner */
   .city-banner {
     background: linear-gradient(135deg, #0f3460, #185fa5);
     border-radius: var(--radius-lg);
-    padding: 1rem 1.25rem;
+    padding: 0.9rem 1.1rem;
     margin: 1.25rem 1.25rem 0;
-    display: flex; align-items: center; gap: 14px;
+    display: flex; align-items: center; gap: 12px;
   }
-  .city-banner i { font-size: 30px; color: #FFD700; flex-shrink: 0; }
-  .city-banner h2 { font-size: 20px; font-weight: 700; color: #fff; }
-  .city-banner p { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  .city-banner i.banner-icon { font-size: 28px; color: #FFD700; flex-shrink: 0; }
+  .city-banner .banner-text { flex: 1; min-width: 0; }
+  .city-banner h2 { font-size: 18px; font-weight: 700; color: #fff; }
+  .city-banner .banner-sub {
+    font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px;
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  }
+  .change-area-btn {
+    background: rgba(255,255,255,0.18); color: #fff;
+    border: none; border-radius: 20px;
+    font-size: 11px; padding: 2px 8px; cursor: pointer;
+    font-family: inherit; display: inline-flex; align-items: center; gap: 3px;
+  }
 
   /* Tab bar */
-  .tab-bar {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-    margin: 1rem 1.25rem 0;
-  }
+  .tab-bar { display: flex; border-bottom: 1px solid var(--border); margin: 1rem 1.25rem 0; }
   .tab {
-    flex: 1; padding: 11px 4px 10px;
-    font-size: 11px; color: var(--text3);
+    flex: 1; padding: 11px 4px 10px; font-size: 11px; color: var(--text3);
     border: none; background: none; cursor: pointer;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
-    transition: all 0.15s;
-    font-family: inherit;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
+    transition: all 0.15s; font-family: inherit;
   }
   .tab.active { color: #185fa5; border-bottom-color: #185fa5; font-weight: 600; }
   .tab i { display: block; font-size: 20px; margin-bottom: 2px; }
 
-  /* Tab content */
   .tab-content { display: none; padding: 1.25rem; }
   .tab-content.active { display: block; }
 
-  /* Area row */
-  .area-row { display: flex; gap: 8px; margin-bottom: 1rem; align-items: center; }
-  .area-row label { font-size: 12px; color: var(--text2); white-space: nowrap; }
-  .area-row input {
-    flex: 1; padding: 9px 12px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border2);
-    font-size: 13px;
-    background: var(--bg);
-    color: var(--text);
-    outline: none;
-    font-family: inherit;
-  }
-  .area-row input:focus { border-color: #185fa5; }
-  .area-row input::placeholder { color: var(--text3); }
-  .go-btn {
-    padding: 9px 14px;
-    background: #0f3460; color: #fff;
-    border: none; border-radius: var(--radius-md);
-    font-size: 13px; font-weight: 600;
-    cursor: pointer; font-family: inherit;
-    white-space: nowrap;
-  }
-
   /* Place card */
   .place-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1rem 1.1rem;
-    margin-bottom: 10px;
-    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 1rem 1.1rem;
+    margin-bottom: 10px; display: flex; align-items: flex-start; gap: 12px;
   }
   .place-icon {
-    width: 42px; height: 42px;
-    border-radius: var(--radius-md);
+    width: 42px; height: 42px; border-radius: var(--radius-md);
     display: flex; align-items: center; justify-content: center;
     font-size: 20px; flex-shrink: 0;
   }
-  .place-icon.food { background: #FAEEDA; color: #854F0B; }
-  .place-icon.bar  { background: #EEEDFE; color: #3C3489; }
+  .place-icon.food  { background: #FAEEDA; color: #854F0B; }
+  .place-icon.bar   { background: #EEEDFE; color: #3C3489; }
   .place-icon.photo { background: #EAF3DE; color: #3B6D11; }
   .place-icon.hobby { background: #FAECE7; color: #993C1D; }
   .place-card h3 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
@@ -231,34 +149,23 @@
   .reason { font-size: 12px; color: var(--text2); margin-top: 4px; line-height: 1.4; }
   .tip { font-size: 11px; color: var(--text3); margin-top: 3px; }
   .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
-  .tag {
-    font-size: 11px; padding: 2px 9px;
-    border-radius: 20px; font-weight: 500;
-  }
+  .tag { font-size: 11px; padding: 2px 9px; border-radius: 20px; font-weight: 500; }
   .tag.gold   { background: #FAEEDA; color: #854F0B; }
   .tag.purple { background: #EEEDFE; color: #3C3489; }
   .tag.green  { background: #EAF3DE; color: #3B6D11; }
   .tag.coral  { background: #FAECE7; color: #993C1D; }
-  .tag.gray   { background: #F1EFE8; color: #444; }
-
   .world50 {
     display: inline-flex; align-items: center; gap: 3px;
     background: #EEEDFE; color: #3C3489;
-    font-size: 10px; font-weight: 600;
-    padding: 2px 7px; border-radius: 20px;
-    margin-left: 4px;
+    font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 20px; margin-left: 4px;
   }
 
-  /* Hobby grid */
+  /* Hobby */
   .hobby-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1rem; }
   .hobby-chip {
-    padding: 13px 8px 11px;
-    border-radius: var(--radius-md);
-    border: 1.5px solid var(--border);
-    background: var(--bg);
-    cursor: pointer;
-    text-align: center;
-    font-size: 12px; color: var(--text2);
+    padding: 13px 8px 11px; border-radius: var(--radius-md);
+    border: 1.5px solid var(--border); background: var(--bg);
+    cursor: pointer; text-align: center; font-size: 12px; color: var(--text2);
     transition: all 0.15s; font-family: inherit;
   }
   .hobby-chip i { display: block; font-size: 22px; margin-bottom: 4px; color: var(--text3); }
@@ -268,54 +175,56 @@
     .hobby-chip.selected { background: #3a1a0c; color: #F0997B; }
     .hobby-chip.selected i { color: #D85A30; }
   }
-
-  /* States */
-  .empty-state {
-    text-align: center; padding: 2.5rem 1rem;
-    color: var(--text3); font-size: 14px;
-  }
-  .empty-state i { font-size: 38px; display: block; margin-bottom: 0.6rem; }
-  .loading-pulse {
-    text-align: center; padding: 2.5rem 1rem;
-    color: var(--text3); font-size: 14px;
-  }
-  .loading-pulse i {
-    font-size: 34px; display: block; margin-bottom: 0.6rem; color: #185fa5;
-    animation: spin 1s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* Hobby results */
   .hobby-results-header {
     display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;
   }
   .hobby-results-header h3 { font-size: 15px; font-weight: 600; }
-  .change-btn {
-    font-size: 12px; color: #185fa5; background: none; border: none;
-    cursor: pointer; font-family: inherit;
-  }
+  .change-hobby-btn { font-size: 12px; color: #185fa5; background: none; border: none; cursor: pointer; font-family: inherit; }
 
-  /* Back */
+  /* States */
+  .empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--text3); font-size: 14px; }
+  .empty-state i { font-size: 38px; display: block; margin-bottom: 0.6rem; }
+  .loading-pulse { text-align: center; padding: 2.5rem 1rem; color: var(--text3); font-size: 14px; }
+  .loading-pulse i { font-size: 34px; display: block; margin-bottom: 0.6rem; color: #185fa5; animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   .back-btn-wrap { padding: 0 1.25rem; margin-top: 0.5rem; }
   .back-btn {
-    width: 100%; padding: 13px;
-    border: 1px solid var(--border2);
-    border-radius: var(--radius-lg);
-    background: none; color: var(--text2);
+    width: 100%; padding: 13px; border: 1px solid var(--border2);
+    border-radius: var(--radius-lg); background: none; color: var(--text2);
     font-size: 14px; cursor: pointer;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    font-family: inherit;
+    display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit;
   }
 
-  .section-title {
-    font-size: 15px; font-weight: 600; color: var(--text);
-    margin-bottom: 0.75rem;
-    display: flex; align-items: center; gap: 8px;
+  /* Area edit modal overlay */
+  .modal-overlay {
+    display: none; position: absolute; inset: 0;
+    background: rgba(0,0,0,0.45); z-index: 100;
+    align-items: flex-start; justify-content: center; padding-top: 120px;
   }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--bg); border-radius: var(--radius-xl);
+    padding: 1.5rem; width: calc(100% - 3rem); max-width: 380px;
+    border: 1px solid var(--border2);
+  }
+  .modal-box h3 { font-size: 16px; font-weight: 600; margin-bottom: 0.25rem; }
+  .modal-box p { font-size: 13px; color: var(--text2); margin-bottom: 1rem; }
+  .modal-input {
+    width: 100%; padding: 13px 14px; border-radius: var(--radius-lg);
+    border: 1.5px solid var(--border2); font-size: 15px;
+    background: var(--bg); color: var(--text); outline: none; font-family: inherit;
+    margin-bottom: 0.75rem;
+  }
+  .modal-input:focus { border-color: #185fa5; }
+  .modal-btns { display: flex; gap: 8px; }
+  .modal-btns button { flex: 1; padding: 12px; border-radius: var(--radius-lg); border: none; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .modal-cancel { background: var(--bg3); color: var(--text2); }
+  .modal-save { background: linear-gradient(135deg, #0f3460, #185fa5); color: #fff; }
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app" id="appRoot">
 
   <!-- WELCOME -->
   <div id="screen-welcome" class="screen active">
@@ -326,11 +235,16 @@
     </div>
     <div class="content" style="padding-top:2.25rem;">
       <div class="section-label">Where are you heading?</div>
-      <div class="city-input-wrap">
-        <i class="ti ti-search"></i>
+      <div class="input-wrap">
+        <i class="ti ti-building-skyscraper"></i>
         <input type="text" id="cityInput" placeholder="e.g. Paris, Tokyo, New York…" autocomplete="off" />
       </div>
-      <div class="section-label" style="margin-top:0.5rem;">What brings you there?</div>
+      <div class="section-label">Which part of the city will you be in?</div>
+      <div class="input-wrap">
+        <i class="ti ti-map-pin"></i>
+        <input type="text" id="areaInput" placeholder="e.g. Shoreditch, Le Marais, Midtown…" autocomplete="off" />
+      </div>
+      <div class="section-label" style="margin-top:0.25rem;">What brings you there?</div>
       <div class="trip-grid">
         <button class="trip-btn" onclick="selectTrip('Holiday',this)"><i class="ti ti-beach"></i>Holiday</button>
         <button class="trip-btn" onclick="selectTrip('Work trip',this)"><i class="ti ti-briefcase"></i>Work trip</button>
@@ -346,11 +260,17 @@
 
   <!-- MAIN -->
   <div id="screen-main" class="screen">
-    <div class="city-banner" id="cityBanner">
-      <i class="ti ti-building-skyscraper"></i>
-      <div>
+    <div class="city-banner">
+      <i class="ti ti-building-skyscraper banner-icon"></i>
+      <div class="banner-text">
         <h2 id="bannerCity">London</h2>
-        <p id="bannerTrip">Holiday · Tap a tab to explore</p>
+        <div class="banner-sub">
+          <span id="bannerTrip">Holiday</span>
+          <span>·</span>
+          <i class="ti ti-map-pin" style="font-size:11px"></i>
+          <span id="bannerArea">Shoreditch</span>
+          <button class="change-area-btn" onclick="openAreaModal()"><i class="ti ti-pencil" style="font-size:10px"></i> change</button>
+        </div>
       </div>
     </div>
 
@@ -361,45 +281,19 @@
       <button class="tab" onclick="switchTab('hobby',this)" role="tab"><i class="ti ti-heart"></i>Hobbies</button>
     </div>
 
-    <!-- EAT -->
     <div id="tab-food" class="tab-content active">
-      <div class="area-row">
-        <label>Your area:</label>
-        <input type="text" id="areaFood" placeholder="Neighbourhood or landmark" />
-        <button class="go-btn" onclick="loadFood()">Go</button>
-      </div>
-      <div id="food-list"><div class="empty-state"><i class="ti ti-tools-kitchen-2"></i>Enter your area above to find top restaurants nearby</div></div>
+      <div id="food-list"><div class="loading-pulse"><i class="ti ti-loader-2"></i>Finding restaurants…</div></div>
     </div>
-
-    <!-- DRINK -->
     <div id="tab-bars" class="tab-content">
-      <div class="area-row">
-        <label>Your area:</label>
-        <input type="text" id="areaBars" placeholder="Neighbourhood or landmark" />
-        <button class="go-btn" onclick="loadBars()">Go</button>
-      </div>
-      <div id="bars-list"><div class="empty-state"><i class="ti ti-glass-cocktail"></i>Enter your area above to find top bars nearby</div></div>
+      <div id="bars-list"><div class="loading-pulse"><i class="ti ti-loader-2"></i>Scouting bars…</div></div>
     </div>
-
-    <!-- SHOOT -->
     <div id="tab-photo" class="tab-content">
-      <div class="area-row">
-        <label>Your area:</label>
-        <input type="text" id="areaPhoto" placeholder="Neighbourhood or landmark" />
-        <button class="go-btn" onclick="loadPhoto()">Go</button>
-      </div>
-      <div id="photo-list"><div class="empty-state"><i class="ti ti-camera"></i>Enter your area above to find photography spots</div></div>
+      <div id="photo-list"><div class="loading-pulse"><i class="ti ti-loader-2"></i>Finding photo spots…</div></div>
     </div>
-
-    <!-- HOBBIES -->
     <div id="tab-hobby" class="tab-content">
       <div id="hobby-pick-view">
-        <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;line-height:1.5;">Pick a hobby and we'll find the best places in the city for it — sorted by how far you are from them.</p>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:1rem;line-height:1.5;">Pick a hobby — we'll find the best spots in the city for it.</p>
         <div class="hobby-grid" id="hobbyGrid"></div>
-        <div class="area-row" style="margin-top:0.25rem;">
-          <label>Your area:</label>
-          <input type="text" id="areaHobby" placeholder="Neighbourhood or landmark" />
-        </div>
         <button class="cta-btn" id="hobbyGoBtn" disabled onclick="loadHobby()" style="margin-top:0.25rem;">
           <i class="ti ti-sparkles"></i> Show hobby spots
         </button>
@@ -407,7 +301,7 @@
       <div id="hobby-results-view" style="display:none;">
         <div class="hobby-results-header">
           <h3 id="hobbyResultTitle"></h3>
-          <button class="change-btn" onclick="resetHobby()">← Change</button>
+          <button class="change-hobby-btn" onclick="resetHobby()">← Change</button>
         </div>
         <div id="hobby-list"></div>
       </div>
@@ -419,22 +313,36 @@
     <p style="font-size:11px;color:var(--text3);text-align:center;margin-top:1rem;padding-bottom:0.5rem;">Powered by Claude AI · Results are AI-generated</p>
   </div>
 
+  <!-- Area change modal -->
+  <div class="modal-overlay" id="areaModal">
+    <div class="modal-box">
+      <h3>Change your area</h3>
+      <p>Results will reload for the new neighbourhood.</p>
+      <input type="text" class="modal-input" id="modalAreaInput" placeholder="Neighbourhood or landmark" />
+      <div class="modal-btns">
+        <button class="modal-cancel" onclick="closeAreaModal()">Cancel</button>
+        <button class="modal-save" onclick="saveArea()">Update area</button>
+      </div>
+    </div>
+  </div>
+
 </div>
 <script>
 const HOBBIES = [
-  { id:'photography', label:'Photography',    icon:'ti-camera' },
-  { id:'reading',     label:'Reading',        icon:'ti-book' },
-  { id:'cooking',     label:'Food & cooking', icon:'ti-tools-kitchen-2' },
-  { id:'fitness',     label:'Fitness & sport',icon:'ti-run' },
-  { id:'music',       label:'Music',          icon:'ti-music' },
-  { id:'art',         label:'Art & galleries',icon:'ti-palette' },
-  { id:'gaming',      label:'Gaming',         icon:'ti-device-gamepad-2' },
+  { id:'photography', label:'Photography',      icon:'ti-camera' },
+  { id:'reading',     label:'Reading',          icon:'ti-book' },
+  { id:'cooking',     label:'Food & cooking',   icon:'ti-tools-kitchen-2' },
+  { id:'fitness',     label:'Fitness & sport',  icon:'ti-run' },
+  { id:'music',       label:'Music',            icon:'ti-music' },
+  { id:'art',         label:'Art & galleries',  icon:'ti-palette' },
+  { id:'gaming',      label:'Gaming',           icon:'ti-device-gamepad-2' },
   { id:'nature',      label:'Nature & outdoors',icon:'ti-trees' },
   { id:'travel',      label:'Exploring & walking',icon:'ti-map' },
-  { id:'film',        label:'Film & cinema',  icon:'ti-movie' }
+  { id:'film',        label:'Film & cinema',    icon:'ti-movie' }
 ];
 
-let currentCity = '', currentTrip = '', selectedHobby = '';
+let currentCity = '', currentArea = '', currentTrip = '', selectedHobby = '';
+let loaded = { food: false, bars: false, photo: false };
 
 function selectTrip(type, btn) {
   currentTrip = type;
@@ -442,24 +350,30 @@ function selectTrip(type, btn) {
   btn.classList.add('selected');
   checkReady();
 }
-document.getElementById('cityInput').addEventListener('input', checkReady);
+
+['cityInput','areaInput'].forEach(id => document.getElementById(id).addEventListener('input', checkReady));
+
 function checkReady() {
-  const v = document.getElementById('cityInput').value.trim();
-  document.getElementById('exploreBtn').disabled = !(v.length > 1 && currentTrip);
+  const city = document.getElementById('cityInput').value.trim();
+  document.getElementById('exploreBtn').disabled = !(city.length > 1 && currentTrip);
 }
 
 function startExplore() {
   currentCity = document.getElementById('cityInput').value.trim();
+  currentArea = document.getElementById('areaInput').value.trim() || 'city centre';
   document.getElementById('bannerCity').textContent = currentCity;
-  document.getElementById('bannerTrip').textContent = currentTrip + ' · Tap a tab to explore';
+  document.getElementById('bannerTrip').textContent = currentTrip;
+  document.getElementById('bannerArea').textContent = currentArea;
+  loaded = { food: false, bars: false, photo: false };
   showScreen('screen-main');
   buildHobbyGrid();
+  loadFood();
 }
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 }
 function goBack() { showScreen('screen-welcome'); }
 
@@ -468,18 +382,44 @@ function switchTab(tab, btn) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-' + tab).classList.add('active');
+  if (tab === 'food'  && !loaded.food)  loadFood();
+  if (tab === 'bars'  && !loaded.bars)  loadBars();
+  if (tab === 'photo' && !loaded.photo) loadPhoto();
+}
+
+function openAreaModal() {
+  document.getElementById('modalAreaInput').value = currentArea;
+  document.getElementById('areaModal').classList.add('open');
+  document.getElementById('modalAreaInput').focus();
+}
+function closeAreaModal() {
+  document.getElementById('areaModal').classList.remove('open');
+}
+function saveArea() {
+  const val = document.getElementById('modalAreaInput').value.trim();
+  if (!val) return;
+  currentArea = val;
+  document.getElementById('bannerArea').textContent = currentArea;
+  closeAreaModal();
+  loaded = { food: false, bars: false, photo: false };
+  resetHobby();
+  const activeTab = document.querySelector('.tab.active');
+  if (activeTab) {
+    const tab = activeTab.getAttribute('onclick').match(/'(\w+)'/)[1];
+    if (tab === 'food')  loadFood();
+    if (tab === 'bars')  loadBars();
+    if (tab === 'photo') loadPhoto();
+  } else {
+    loadFood();
+  }
 }
 
 function loading(id, msg) {
   document.getElementById(id).innerHTML = `<div class="loading-pulse"><i class="ti ti-loader-2"></i>${msg}</div>`;
 }
-
 function parseJSON(raw) {
-  try {
-    return JSON.parse(raw.replace(/```json|```/g,'').trim());
-  } catch { return null; }
+  try { return JSON.parse(raw.replace(/```json|```/g,'').trim()); } catch { return null; }
 }
-
 function starsHTML(r) {
   const n = parseFloat(r) || 0, f = Math.round(n);
   let s = '';
@@ -489,23 +429,19 @@ function starsHTML(r) {
 
 async function callClaude(prompt) {
   const r = await fetch('https://api.anthropic.com/v1/messages', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({
-      model:'claude-sonnet-4-6',
-      max_tokens:1000,
-      messages:[{role:'user',content:prompt}]
-    })
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:1000, messages:[{role:'user',content:prompt}] })
   });
   const d = await r.json();
   return d.content?.[0]?.text || '';
 }
 
 async function loadFood() {
-  const area = document.getElementById('areaFood').value.trim() || 'city centre';
-  loading('food-list', `Finding restaurants near ${area}…`);
-  const raw = await callClaude(`List the top 8 restaurants in ${currentCity} near ${area}. For each: name, cuisine, realistic Google rating out of 5, walking distance in minutes from ${area}, reason to visit (max 10 words), tag from [Michelin, Fine dining, Local favourite, Budget, Trendy, Rooftop, Historic]. JSON array only: [{"name":"","cuisine":"","rating":0,"walk_mins":0,"reason":"","tag":""}]`);
+  loading('food-list', `Finding restaurants near ${currentArea}…`);
+  const raw = await callClaude(`List the top 8 restaurants in ${currentCity} near ${currentArea}. For each: name, cuisine, realistic Google rating out of 5, walking distance in minutes from ${currentArea}, reason to visit (max 10 words), tag from [Michelin, Fine dining, Local favourite, Budget, Trendy, Rooftop, Historic]. JSON array only: [{"name":"","cuisine":"","rating":0,"walk_mins":0,"reason":"","tag":""}]`);
   const items = parseJSON(raw);
+  loaded.food = true;
   if (!items) { document.getElementById('food-list').innerHTML='<div class="empty-state"><i class="ti ti-alert-circle"></i>Could not load. Please try again.</div>'; return; }
   document.getElementById('food-list').innerHTML = items.sort((a,b)=>a.walk_mins-b.walk_mins).map(r=>`
     <div class="place-card">
@@ -521,10 +457,10 @@ async function loadFood() {
 }
 
 async function loadBars() {
-  const area = document.getElementById('areaBars').value.trim() || 'city centre';
-  loading('bars-list', `Scouting bars near ${area}…`);
-  const raw = await callClaude(`List the top 8 bars in ${currentCity} near ${area}. For each: name, type (cocktail bar/wine bar/pub/rooftop etc), realistic rating out of 5, walking distance in minutes from ${area}, one highlight (max 10 words), whether it has appeared in World's 50 Best Bars (boolean world50), tag from [World Top 50, Speakeasy, Rooftop, Classic pub, Craft beer, Wine bar, Trendy]. JSON array only: [{"name":"","type":"","rating":0,"walk_mins":0,"highlight":"","world50":false,"tag":""}]`);
+  loading('bars-list', `Scouting bars near ${currentArea}…`);
+  const raw = await callClaude(`List the top 8 bars in ${currentCity} near ${currentArea}. For each: name, type (cocktail bar/wine bar/pub/rooftop etc), realistic rating out of 5, walking distance in minutes from ${currentArea}, one highlight (max 10 words), whether it has appeared in World's 50 Best Bars (boolean world50), tag from [World Top 50, Speakeasy, Rooftop, Classic pub, Craft beer, Wine bar, Trendy]. JSON array only: [{"name":"","type":"","rating":0,"walk_mins":0,"highlight":"","world50":false,"tag":""}]`);
   const items = parseJSON(raw);
+  loaded.bars = true;
   if (!items) { document.getElementById('bars-list').innerHTML='<div class="empty-state"><i class="ti ti-alert-circle"></i>Could not load. Please try again.</div>'; return; }
   document.getElementById('bars-list').innerHTML = items.sort((a,b)=>a.walk_mins-b.walk_mins).map(r=>`
     <div class="place-card">
@@ -540,10 +476,10 @@ async function loadBars() {
 }
 
 async function loadPhoto() {
-  const area = document.getElementById('areaPhoto').value.trim() || 'city centre';
-  loading('photo-list', `Finding photo spots near ${area}…`);
-  const raw = await callClaude(`List 8 top photography spots in ${currentCity} near ${area}, popular with phone photographers and Instagram. For each: name, type (street/architecture/viewpoint/market/mural/nature etc), best time of day, composition tip (max 12 words), walking distance in minutes from ${area}, tag from [Golden hour, Street scene, Architecture, Viewpoint, Nature, Mural & street art, Market, Night shot]. JSON array only: [{"name":"","type":"","best_time":"","tip":"","walk_mins":0,"tag":""}]`);
+  loading('photo-list', `Finding photo spots near ${currentArea}…`);
+  const raw = await callClaude(`List 8 top photography spots in ${currentCity} near ${currentArea}, popular with phone photographers and Instagram. For each: name, type (street/architecture/viewpoint/market/mural/nature etc), best time of day, composition tip (max 12 words), walking distance in minutes from ${currentArea}, tag from [Golden hour, Street scene, Architecture, Viewpoint, Nature, Mural & street art, Market, Night shot]. JSON array only: [{"name":"","type":"","best_time":"","tip":"","walk_mins":0,"tag":""}]`);
   const items = parseJSON(raw);
+  loaded.photo = true;
   if (!items) { document.getElementById('photo-list').innerHTML='<div class="empty-state"><i class="ti ti-alert-circle"></i>Could not load. Please try again.</div>'; return; }
   document.getElementById('photo-list').innerHTML = items.sort((a,b)=>a.walk_mins-b.walk_mins).map(r=>`
     <div class="place-card">
@@ -564,14 +500,12 @@ function buildHobbyGrid() {
       <i class="ti ${h.icon}"></i>${h.label}
     </button>`).join('');
 }
-
 function selectHobby(id, btn) {
   selectedHobby = id;
   document.querySelectorAll('.hobby-chip').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
   document.getElementById('hobbyGoBtn').disabled = false;
 }
-
 function resetHobby() {
   selectedHobby = '';
   document.getElementById('hobby-pick-view').style.display = 'block';
@@ -579,16 +513,14 @@ function resetHobby() {
   document.querySelectorAll('.hobby-chip').forEach(b=>b.classList.remove('selected'));
   document.getElementById('hobbyGoBtn').disabled = true;
 }
-
 async function loadHobby() {
-  const area = document.getElementById('areaHobby').value.trim() || 'city centre';
   const hobbyObj = HOBBIES.find(h=>h.id===selectedHobby);
   if (!hobbyObj) return;
   document.getElementById('hobby-pick-view').style.display='none';
   document.getElementById('hobby-results-view').style.display='block';
   document.getElementById('hobbyResultTitle').textContent = hobbyObj.label + ' in ' + currentCity;
   loading('hobby-list', `Finding ${hobbyObj.label.toLowerCase()} spots…`);
-  const raw = await callClaude(`List 7 specific places in ${currentCity} near ${area} for someone whose hobby is "${hobbyObj.label}". Be specific and practical — real venues. For each: name, venue type, walking distance in minutes from ${area}, reason it's great for this hobby (max 12 words), one practical tip (max 10 words), and a relevant short tag. JSON array only: [{"name":"","type":"","walk_mins":0,"reason":"","tip":"","tag":""}]`);
+  const raw = await callClaude(`List 7 specific places in ${currentCity} near ${currentArea} for someone whose hobby is "${hobbyObj.label}". Be specific and practical — real venues. For each: name, venue type, walking distance in minutes from ${currentArea}, reason it's great for this hobby (max 12 words), one practical tip (max 10 words), and a relevant short tag. JSON array only: [{"name":"","type":"","walk_mins":0,"reason":"","tip":"","tag":""}]`);
   const items = parseJSON(raw);
   if (!items) { document.getElementById('hobby-list').innerHTML='<div class="empty-state"><i class="ti ti-alert-circle"></i>Could not load. Please try again.</div>'; return; }
   document.getElementById('hobby-list').innerHTML = items.sort((a,b)=>a.walk_mins-b.walk_mins).map(r=>`
